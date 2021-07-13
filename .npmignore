@@ -1,6 +1,6 @@
 node_modules/
 tsconfig.json
-generate-colour-lut.js
+generators/
 package-lock.json
 src/
 .github/
