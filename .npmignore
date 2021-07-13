@@ -1,0 +1,7 @@
+node_modules/
+tsconfig.json
+generate-colour-lut.js
+package-lock.json
+src/
+.github/
+.DS_Store
