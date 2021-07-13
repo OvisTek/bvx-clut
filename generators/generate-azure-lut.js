@@ -1,4 +1,3 @@
-// shades of azure colours
 module.exports = [
     {
         name: "Azure",
