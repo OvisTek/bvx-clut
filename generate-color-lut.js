@@ -28,8 +28,8 @@ const rgbToHsl = (c) => {
     return [h * 360, s * 100, l * 100];
 };
 
-const sortColourArray = (colourArray) => {
-    return colourArray.map((c, i) => {
+const sortColorArray = (colorArray) => {
+    return colorArray.map((c, i) => {
         return {
             color: rgbToHsl(c.rgb),
             index: i
@@ -37,15 +37,15 @@ const sortColourArray = (colourArray) => {
     }).sort((c1, c2) => {
         return c1.color[0] - c2.color[0];
     }).map((data) => {
-        return colourArray[data.index];
+        return colorArray[data.index];
     });
 };
 
-const searchColour = (colours, search) => {
+const searchColor = (colors, search) => {
     for (let i = 0; i < search.length; i++) {
         const toCheck = search[i];
 
-        if (toCheck && colours[0] === toCheck[0] && colours[1] === toCheck[1] && colours[2] === toCheck[2]) {
+        if (toCheck && colors[0] === toCheck[0] && colors[1] === toCheck[1] && colors[2] === toCheck[2]) {
             return true;
         }
     }
@@ -55,8 +55,8 @@ const searchColour = (colours, search) => {
 
 const duplicates = [];
 
-const writeLUT = (colourArray, lutFileName) => {
-    const LUT_COLOUR_PATH = "./src/lut/" + lutFileName + "/colours.ts";
+const writeLUT = (colorArray, lutFileName) => {
+    const LUT_COLOUR_PATH = "./src/lut/" + lutFileName + "/colors.ts";
     const LUT_NAME_PATH = "./src/lut/" + lutFileName + "/names.ts";
 
     try {
@@ -70,35 +70,35 @@ const writeLUT = (colourArray, lutFileName) => {
     catch (e) { }
 
     // sort our array
-    const sortedColourArray = sortColourArray(colourArray);
+    const sortedColorArray = sortColorArray(colorArray);
 
-    let coloursOut = "[";
+    let colorsOut = "[";
     let namesOut = "[";
 
-    for (let i = 0; i < sortedColourArray.length; i++) {
-        const colourToWrite = sortedColourArray[i];
+    for (let i = 0; i < sortedColorArray.length; i++) {
+        const colorToWrite = sortedColorArray[i];
 
         // make sure the same RGB does not end up in different LUT tables
-        if (colourToWrite && !searchColour(colourToWrite.rgb, duplicates)) {
-            duplicates.push(colourToWrite.rgb);
+        if (colorToWrite && !searchColor(colorToWrite.rgb, duplicates)) {
+            duplicates.push(colorToWrite.rgb);
 
-            coloursOut += colourToWrite.rgb[0] + "," + colourToWrite.rgb[1] + "," + colourToWrite.rgb[2] + ",";
-            namesOut += "\"" + colourToWrite.name.toLowerCase() + "\",";
+            colorsOut += colorToWrite.rgb[0] + "," + colorToWrite.rgb[1] + "," + colorToWrite.rgb[2] + ",";
+            namesOut += "\"" + colorToWrite.name.toLowerCase() + "\",";
         }
     }
 
     // strip last character and close the array
-    coloursOut = coloursOut.slice(0, -1) + "]";
+    colorsOut = colorsOut.slice(0, -1) + "]";
     namesOut = namesOut.slice(0, -1) + "]";
 
     fs.ensureFileSync(LUT_COLOUR_PATH);
-    fs.writeFileSync(LUT_COLOUR_PATH, "export default new Uint8Array(" + coloursOut + ");");
+    fs.writeFileSync(LUT_COLOUR_PATH, "export default new Uint8Array(" + colorsOut + ");");
     fs.ensureFileSync(LUT_NAME_PATH);
     fs.writeFileSync(LUT_NAME_PATH, "export default " + namesOut + ";");
 };
 
-const azureArray = require("./colours/azure-lut");
-const blackArray = require("./colours/black-lut");
+const azureArray = require("./colors/azure-lut");
+const blackArray = require("./colors/black-lut");
 
 // sort and write the azure-array
 writeLUT(azureArray, 'azure');

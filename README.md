@@ -7,11 +7,11 @@
 [![NPM](https://img.shields.io/npm/v/@ovistek/bvx-clut)](https://www.npmjs.com/package/@ovistek/bvx-clut)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat)](LICENSE)
 
-#### **Colour Lookup Table (LUT) for [BitVoxel Engine](https://github.com/OvisTek/bvx.ts)**
+#### **Color Lookup Table (LUT) for [BitVoxel Engine](https://github.com/OvisTek/bvx.ts)**
 
 * * *
 
-Colour Lookup Table (LUT) generates named colours used in 3D BitVoxel Rendering to achieve certain effects. This LUT is designed to work with the [BitVoxel Engine](https://github.com/OvisTek/bvx.ts).
+Color Lookup Table (LUT) generates named colours used in 3D BitVoxel Rendering to achieve certain effects. This LUT is designed to work with the [BitVoxel Engine](https://github.com/OvisTek/bvx.ts).
 
 ### _**Installation**_
 

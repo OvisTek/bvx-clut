@@ -9,7 +9,7 @@
     "build-ts": "rm -rf dist && tsc --noEmitOnError",
     "build": "npm run build-ts",
     "clean:build": "npm run clean && npm install && npm run build",
-    "generate": "node generate-colour-lut.js"
+    "generate": "node generate-color-lut.js"
   },
   "repository": {
     "type": "git",
