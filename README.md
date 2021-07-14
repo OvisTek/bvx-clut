@@ -11,7 +11,7 @@
 
 * * *
 
-Color Lookup Table (LUT) generates named colours used in 3D BitVoxel Rendering to achieve certain effects. This LUT is designed to work with the [BitVoxel Engine](https://github.com/OvisTek/bvx.ts).
+Color Lookup Table (LUT) generates named colors used in 3D BitVoxel Rendering to achieve certain effects. This LUT is designed to work with the [BitVoxel Engine](https://github.com/OvisTek/bvx.ts).
 
 ### _**Installation**_
 
