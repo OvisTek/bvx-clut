@@ -75,6 +75,8 @@ const writeLUT = (colorArray, lutFileName) => {
     let colorsOut = "[";
     let namesOut = "[";
 
+    let counter = 0;
+
     for (let i = 0; i < sortedColorArray.length; i++) {
         const colorToWrite = sortedColorArray[i];
 
@@ -83,7 +85,9 @@ const writeLUT = (colorArray, lutFileName) => {
             duplicates.push(colorToWrite.rgb);
 
             colorsOut += colorToWrite.rgb[0] + "," + colorToWrite.rgb[1] + "," + colorToWrite.rgb[2] + ",";
-            namesOut += "\"" + colorToWrite.name.toLowerCase() + "\",";
+            namesOut += "[\"" + colorToWrite.name.toLowerCase() + "\"," + (counter + 1) + "],";
+
+            counter++;
         }
     }
 
@@ -94,7 +98,7 @@ const writeLUT = (colorArray, lutFileName) => {
     fs.ensureFileSync(LUT_COLOUR_PATH);
     fs.writeFileSync(LUT_COLOUR_PATH, "export default new Uint8Array(" + colorsOut + ");");
     fs.ensureFileSync(LUT_NAME_PATH);
-    fs.writeFileSync(LUT_NAME_PATH, "export default " + namesOut + ";");
+    fs.writeFileSync(LUT_NAME_PATH, "export default new Map<string, number>(" + namesOut + ");");
 };
 
 const azureArray = require("./colors/azure-lut");
